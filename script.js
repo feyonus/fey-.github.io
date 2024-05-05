@@ -1,3 +1,14 @@
+// "str": _str,
+// "dex": _dex,
+// "con": _con,
+// "int": _int,
+// "wis": _wis,
+// "cha": _cha,
+// "lck": _luck,
+// "spd": _speed,
+
+
+
 var names = [
     "Aldric", "Branwen", "Cassius", "Dahlia", "Eleanor", "Finnian", "Gwendolyn", "Harrison", "Isolde", "Jasper",
     "Kaida", "Liliana", "Marius", "Niamh", "Orin", "Phaedra", "Quintus", "Rhiannon", "Soren", "Tamsin",
@@ -21,8 +32,11 @@ function calculateTotal(characterNum) {
     var strength = parseInt(document.getElementById("character" + characterNum + "-strength").textContent);
     var agility = parseInt(document.getElementById("character" + characterNum + "-agility").textContent);
     var intelligence = parseInt(document.getElementById("character" + characterNum + "-intelligence").textContent);
+    var wisdom = parseInt(document.getElementById("character" + characterNum + "-wisdom").textContent);
     var charisma = parseInt(document.getElementById("character" + characterNum + "-charisma").textContent);
-    return strength + agility + intelligence + charisma;
+    var luck = parseInt(document.getElementById("character" + characterNum + "-luck").textContent);
+    var speed = parseInt(document.getElementById("character" + characterNum + "-speed").textContent);
+    return strength + agility + intelligence + wisdom + charisma + luck + speed;
 }
 
 // Function to determine the winner and display the result
@@ -52,7 +66,10 @@ function generateCharacter(characterNum) {
     var strength = Math.floor(Math.random() * 10) + 1;
     var agility = Math.floor(Math.random() * 10) + 1;
     var intelligence = Math.floor(Math.random() * 10) + 1;
+    var wisdom = Math.floor(Math.random() * 10) + 1;
     var charisma = Math.floor(Math.random() * 10) + 1;
+    var luck = Math.floor(Math.random() * 5) + 1;
+    var speed = Math.floor(Math.random() * 20) + 1;
 
     // Generate a random name
     var name = generateRandomName();
@@ -62,7 +79,10 @@ function generateCharacter(characterNum) {
     document.getElementById("character" + characterNum + "-strength").textContent = strength;
     document.getElementById("character" + characterNum + "-agility").textContent = agility;
     document.getElementById("character" + characterNum + "-intelligence").textContent = intelligence;
+    document.getElementById("character" + characterNum + "-wisdom").textContent = wisdom;
     document.getElementById("character" + characterNum + "-charisma").textContent = charisma;
+    document.getElementById("character" + characterNum + "-luck").textContent = luck;
+    document.getElementById("character" + characterNum + "-speed").textContent = speed;
 }
 
 // Function to generate characters for both blocks
@@ -81,23 +101,3 @@ window.addEventListener('load', function() {
 document.getElementById('generateButton').addEventListener('click', function() {
     generateCharacters();
 });
-
-
-// Function to render the title banner
-function titleBanner(version) {
-    var title = `
-      ____      _ _                             _     
-     / ___|_ __(_) |__  ___ _ __ ___   __ _ ___| |__  
-    | |   | '__| | '_ \\/ __| '_ \` _ \\ / _\` / __| '_ \\ 
-    | |___| |  | | |_) \\__ \\ | | | | | (_| \\__ \\ | | |
-     \\____|_|  |_|_.__/|___/_| |_| |_|\\__,_|___/_| |_|
-                                                 ver.${version}                            
-    \n\tThe Foster Home Autobattler.\n\tThey all want to be part of a family but only one will be adopted.\n`;
-
-    // Update the title container with the title content
-    document.getElementById("title-container").textContent = title;
-}
-
-// Call the titleBanner function with the desired version
-var version = "1.0";
-titleBanner(version);
