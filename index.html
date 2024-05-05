@@ -1,215 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cribsmash!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    <title>OMG?</title>
+<body>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Reading Material</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="index.html">Love Sonnets</a></li>
+    <div class="container">
+        <h1>Cribsmash Fighter Generator</h1>
+        <div class="characters-container">
+            <div id="character1" class="character-block">
+                <h2>Fighter 1 Stats</h2>
+                <p><strong>Name:</strong> <span id="character1-name"></span></p>
+                <ul>
+                    <li><strong>Strength:</strong> <span id="character1-strength"></span></li>
+                    <li><strong>Agility:</strong> <span id="character1-agility"></span></li>
+                    <li><strong>Intelligence:</strong> <span id="character1-intelligence"></span></li>
+                    <li><strong>Charisma:</strong> <span id="character1-charisma"></span></li>
                 </ul>
-              </nav>
             </div>
-          </div>
-
-          <div class="inner cover">
-            <h1 class="cover-heading"></h1>
-            <p class="lead" id="text">
-
-
-
-				<!-- I stole the following from the internet, sorry -->
-				    <script>
-				    	/*!
-				       * Please don't rip off my code. Respect original work.
-				       */
-				      var vocab={
-						  verbs:{
-sex:[["fuck","fucked","fucking"],["hammer","hammered","hammering"],["slam","slammed","slamming"],["thrust","thrusted","thrusting"],["pound","pounded","pounding"],["plow","plowed","plowing"],["fornicate","fornicated","fornicating"]],
-
-insert:[["ram","rammed","ramming"],["stuff","stuffed","stuffing"],["plunge","plunged","plunging"],["shove","shoved","shoving"],["slide","slid","sliding"],["probe","probed","probing"]],
-							  squirt:[["squirt","squirted","squirting"],["pour","poured","pouring"],["splurge","splurged","splurging"],["spritz","spritzed","spritzing"],["surge","surged","surging"],["spit","spattered","spattering"],["spray","sprayed","spraying"],["flood","flooded","flooding"],["flow","flowed","flowing"],["ejects","ejected","ejecting"],["gush","gushed","gushing"],["spout","spouted","spouting"]],
-							  dribble:[["dribble","dribbled","dribbling"],["flow","flowed","flowing"],["salivate","salivated","salivating"],["froth","frothed","frothing"],["foam","foamed","foaming"],["leach","leached","leaching"],["haemorrhage","haemorrhaged","haemorrhaging"],["drain","drained","draining"],["weep","wept","weeping"],["slime","slimed","sliming"],["ooze","oozed","oozing",],["slobber","slobbered","slobbering"],["seep","seeped","seeping"],["drip","dripped","dripping"],["trickle","trickled","trickling"]],
-
-suck:[["suck","sucked","sucking"],["gobble","gobbled","gobbling"],["consume","consumed","consuming"],["devour","devoured","devouring"],["chow down on","chowed down on","chowing down on"],["lap","lapped","lapping"],["inhale","inhaled","inhaling"]],
-
-defecate:[["curl","curled","curling"],["arc","arced","arcing"],["blast","blasted","blasting"],["cop","copped","copping"],["cut","cut","cutting"],["drop","dropped","dropping"],["ease","eased out","easing out"],["launch","launched","launching"],["pitch","pitched","pitching"],["crown","crowned","crowning"],["extrude","extruded","extruding"],["roll","rolled","rolling"],["punish","punished","punishing"]],
-
-shake:[["quiver","quivered","quivering"],["quake","quaked","quaking"],["lurch","lurched","lurching"],["pulsate","pulsating","pulsated"],["throb","throbbing","throbbed"]]},
-
-				nouns:{
-penis:["spunk-filled spam rocket","stilton spear","vein cane","spam dagger","blood-engorged mayonnaise cannon","thrill drill","cervix cigar","spam javelin","clunger","veiny quim prod","cheese-crusted cock","jebend","womb raider","ocean's 11 inches","tenderloin truncheon","slut slayer","washington monument","purple beaver buster","throbbing quim dagger","huge penis","brie baton","stilton sword","devil's bagpipe","sperminator","one-eyed milkman","greasy slimelight","gristle missile","all-beef thermometer","timed slimer","bald-headed yogurt slinger","flesh gordon","disco stick","long-dong silver","wensleydale wand","cumtree","Vince cable","chorizo howitzer","love muscle","chubstep","pink tractor beam","skin flute","trouser bowser","tallywacker","skeleton king","meaty member","cunt plunger","love lollipop","blind butler","eight inches of throbbing pink jesus","piss pipe","ample cock","one-eyed monster","greasy kebab skewer","muffbuster","cream reaper","bald avenger","balony pony","battering ram","giggle stick","master of ceremonies","love muscle","cunt stretcher","ramrod","cunt destroyer","Donald's Trump","harpoon"],
-
-testes:["man marbles","jingle-jangle jewellery","kids on a swing","trouser conkors","man berries","chin pounders","salty protein grapes","scroto baggins","hairy walnuts","love spuds","family jewels","sperm factories","two amigos","clock weights","testicles","balls","swollen eggs","puffy grapes"],
-
-semen:["creamy load","love mayonnaise","love piss","man fat","ectoplasm","magician's wax","Da Vinci load","penis pudding","cock custard","steamin' semen","baby gravy","cock snot","cum","creme freche","man sauce"],
-
-vagina:["south mouth","wizards sleeve","crusty fuck trench","salmon slit","vaginal bacon buffet","cod crater","spunk dungeon","tampon tunnel","one slice toaster","shame portal","ladytown","hairy spunk dungeon","quim","calamari cockring","gammon alley","penis pothole","carp cavity","gashtray","ground zero grotto","split peach","chlamydia canal","kipper dinghy","clam-flavoured pothole","Quimcy, M.E.","moose knuckle","meat purse","gaping clam cavern","pink velvet sausage wallet","quivering mound of love pudding","smush mitten","whispering eye","stench trench","cod canyon","bearded haddock pasty","gaping slime hole","tuna canal","soft-shelled tuna taco","furry cup","enchilada of love","oyster ditch","sperm socket","municipal cockwash","cock holster","wunder down under","birth cannon","hatchet wound","hot pocket","cum dumpster","clunge pool","shamevelope","clearing in the woods","herring hole","cod cave","depravity cavity","vibrator crater","chamber of squelch"],
-
-labia:["beef curtains","spam castanets","fishy flaps","flappy meal","piss flaps","meaty hangers","roast beef platter","clap flaps","hairy goblet","swollen budgie's tongue","furburger","velcro triangle","vertical smile","sugared almond","bald man in a boat","panty hamster","purple cabbage","lunchmeat","piss flaps","open-faced ham sandwich"],
-
-breasts:["chesticles","chest puppies","cans","boobage","top bollocks","breasticles","mammaries","mosquito bites","rack","sweater puppies","tatas","fiery biscuits","droopies","superdroopers","love bubbles","titties","breasts","tits","fun bags","deflated pillows"],
-
-lady_cum:["fallopian fish stock","sex wee","shrimp sap","beige slime","minge mucus","spaff","tuna tunnel tears","minge monsoon","flange custard","vertical moisture","pussy batter","clunge gunge","pussy juice","bitch sauce","vaginal secretions","death sploodge"],
-
-anus:["black hole","fart valve","oxo orifice","balloon knot","cocoa channel","brown mile","soft tight anus","poop chute","mavis fritter","vintage golf bag","shit winker","chocolate starfish","ring piece","rusty sherif's badge","marmite motorway","brown eye","old dirt road","puckered brown eye","rusty bullet hole","turd cutter","mud flap","turd-herder","other vagina","fudge factory","back pussy","other hole","anus","rectal orifice","daddy's secret fun hole","outhouse door"],
-
-seepage:["rectoplasm","sphincter sauce","santorum","frothy mixture of semen, shit and blood"],
-
-mouth:["mouth","throat","cake hole","face hole"],
-
-insertable:['a 15" spiked vibrator',"a 10 inch purple battery-operated monster","a footlong fudge bullet","a cucumber","a gerbil","a number of chillies","a barbie doll","a squash","an egg timer","a lightbulb","my fist","railroad spike","a small japanese man"],
-
-faeces:["footlong fudge bullet","butt nugget","stink pickle","sewer trout","toilet twinkie","Mr. Hanky","hardened fudge nugget","corn-eyed butt snake","colon cobra"],
-
-menstruation:["been on the rag","been riding the cotton pony","had Aunt Flo visiting","had the painters in","had my redwings","been up on bricks","been surfing the crimson tide","been kayaking up the red river"]},
-
-similes:{
-
-shake:["jelly","a shitting dog","a tasered slab of chopped liver","Muhammad Ali on a tumble dryer","a rat on acid","Vanessa Feltz's diesel-powered vibrator","Micheal J. Fox licking a car battery"],
-
-eat:["a bulldog eating porridge","a pig at a trough","a hungry hungry hippo","a fat man at a strip club"],
-
-sweat:["a whore in church","a blind lesbian in a fish shop","a fat slag in a disco","a dyslexic on Countdown","a midget nun at a penguin shoot","a paedo during a prison riot","a white mouse in a tampon factory","a pregnant nun","a gypsy near an unlocked shipping container","a jewish accountant working for the SS"],
-
-dribble:["a hungry pig at a trough","a slavering dog","a broken coffee maker","Wayne Rooney's dick in an OAP home","a George Foreman grill","a rabid dog","a jizz waterfall","someone had poured fairy liquid into Niagara Falls","Adele waiting for Greggs to open","a broken fridge freezer","Augustus Gloop at Willy Wonka's chocolate river","a leaky tap","there was a midget inside me with a super soaker","a slug in a salt mine"],
-
-sore:["badly battered road kill","Pete Burns' lips","an over inflated dinghy","a bucket of smashed crabs","that bathroom door in The Shining","a bulldog licking piss from a thistle","a werewolf with it's throat cut","a hippo's yawn","a horse's collar","a badly wrapped kebab","a gutted trout","a twisted slipper","a blind cobbler's thumb","John Wayne's saddlebags","a shot cat","a motorway pileup","a darts team's goalkeeper","Brian May's plughole","a ripped out fireplace","a manatee in yoga pants","the Japanese flag","Terry Waite's allotment","the south end of a badger going north","a stamped bat","a rabid baboon's arse"],
-
-wet:["a spastic's chin","an otter's pocket","an Italian cruise ship","a well diggers arse","an English summer"],
-
-fast:["greased shit off a shiny shovel","a greased weasel shit","snot off a whip"]}};
-
-var sentences=[
-"The unrelenting orgasms from his [noun-penis] [verb-sex-present] my [noun-vagina] made me come so hard, I began sweating like [simile-sweat].",
-"After having my [noun-vagina] [verb-sex-past], he then proceeded to [verb-sex-root] my [noun-anus].",
-"The [verb-sex-present] makes me [verb-squirt-root] my [noun-lady_cum] all over his [noun-penis].",
-"By now, my [noun-vagina] was [verb-dribble-present] like [simile-dribble].",
-"I can't wait to [verb-suck-root] the [noun-semen] from his [noun-penis].",
-"My [noun-vagina] was trembling like [simile-shake].",
-"Inserting [noun-insertable] into my [noun-vagina] got me [verb-squirt-present] [noun-lady_cum] faster than [simile-fast].",
-"The [verb-sex-present] of my [noun-anus] was so vigorous, he soon found his [noun-testes] joining his [noun-penis] deep in my [noun-anus].",
-"He munched on my [noun-labia], even though I'd [noun-menstruation] for the best part of a week.",
-"He [verb-defecate-past] a giant [noun-faeces] on my [noun-breasts] just so he could [verb-suck-root] it up like [simile-eat].",
-"With his [noun-penis] [verb-sex-present] deep into my [noun-vagina], the sensation of his [noun-penis] smashing my cervix made me [verb-shake-root] like [simile-shake].",
-"When he removed his [noun-penis] from my [noun-anus], he was pleasantly surprised to see a [noun-faeces] staring back as him. He knew I couldn't wait to [verb-suck-root] the [noun-faeces] off his [noun-penis].",
-"Within no time, I could feel the shitty [noun-semen] [verb-dribble-present] from my [noun-anus] and all over my [noun-labia].",
-"Hours of [verb-sex-present] like this would leave any girl's [noun-labia] looking like [simile-sore], and I was no different!",
-"The mixture of [noun-faeces] and [noun-semen] in my [noun-anus] created the delicious [noun-seepage] that he was so fond of.",
-"Now, I've [verb-suck-past] more [noun-penis] than Hitler at a Gay Pride Festival, but the sight of his [noun-penis] made my [noun-lady_cum] [verb-dribble-root] like [simile-dribble].",
-"The seemingly never-ending streams of [noun-semen] emanating from his [noun-penis] soon had me coated like a plasterer's radio.",
-"I awoke the next morning with my [noun-vagina] still [verb-dribble-present]. I thought it was over but his [noun-penis] had other ideas.","With my [noun-labia] now much like [simile-sore], he thought it was time to start [verb-insert-present] my [noun-anus]. Is now the time to tell him I really need to [verb-defecate-root] a [noun-faeces], I wondered?","The feeling of his [noun-semen] [verb-dribble-present] down my throat got my [noun-lady_cum] flowing quicker than [simile-fast].",
-"It was bliss having his [noun-penis] [verb-insert-past] inside me again; stuffing my [noun-vagina] with [noun-insertable] just didn't get my [noun-vagina] [verb-squirt-present] like it used to.",
-"There was [noun-semen] [verb-dribble-present] from his [noun-penis] and I was wetter than [simile-wet]. We were ready for more.",
-"My [noun-mouth] was so full of [noun-penis] and [noun-semen], the [noun-semen] was [verb-dribble-present] down my chin and onto my [noun-breasts].",
-"Leaving my panties sunny side up on the floor was the least of my worries as his [noun-penis] [verb-insert-past] deeper into my [noun-anus].",
-"Without delay I took his [noun-penis] and [verb-insert-past] it into my [noun-anus], making his [noun-testes] tremble like [simile-shake].",
-"We've finally had consensual intercourse.",
-];
-
-
-function parse_sentence(e){var b="";
-var g,d,c,f,a;
-while(e.length>0){g=e.indexOf("[");
-if(g>-1){b=b+e.substr(0,g);e=e.substr(g+1);d=e.indexOf("]");c=e.substr(0,d);f=c.split("-");
-switch(f[0]){case"verb":a=vocab.verbs[f[1]];
-switch(f[2]){case"root":b=b+a[Math.floor(Math.random()*a.length)][0];
-break;
-case"past":b=b+a[Math.floor(Math.random()*a.length)][1];
-break;
-case"present":b=b+a[Math.floor(Math.random()*a.length)][2];
-break}
-break;
-case"noun":a=vocab.nouns[f[1]];b=b+a[Math.floor(Math.random()*a.length)];
-break;
-case"simile":a=vocab.similes[f[1]];b=b+a[Math.floor(Math.random()*a.length)];break}e=e.substr(d+1)}else{b=b+e;e=""}}return b}
-
-function generate(a){var b="";
-
-sentences.sort(function(){return 0.5-Math.random()});var d=sentences.slice(0,a);for(var c=0;c<a;c++){b=b+parse_sentence(d[c])+" "}return b.substr(0,b.length-1)}
-
-function update_text(){document.getElementById("text").innerHTML=generate(1)}update_text();
-
-function copy_text(text) {
-    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
-}
-
-$('#text').click(function() {
-    copyToClipboard('bobo')
-})
-
-
-
-
-
-					</script>
-
-            </p>
-            <p class="lead">
-              <a href="#" onclick="update_text();" class="btn btn-lg btn-default">More?</a>
-			  
-            </p>
-          </div>
-
-
-
-
-
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Stolen and taken advantage of by FeY.</p>
+            
+            <div class="versus">VS</div>
+            
+            <div id="character2" class="character-block">
+                <h2>Fighter 2 Stats</h2>
+                <p><strong>Name:</strong> <span id="character2-name"></span></p>
+                <ul>
+                    <li><strong>Strength:</strong> <span id="character2-strength"></span></li>
+                    <li><strong>Agility:</strong> <span id="character2-agility"></span></li>
+                    <li><strong>Intelligence:</strong> <span id="character2-intelligence"></span></li>
+                    <li><strong>Charisma:</strong> <span id="character2-charisma"></span></li>
+                </ul>
             </div>
-          </div>
-
         </div>
-
-      </div>
-
+    
+        <div id="winner" class="winner"><h2>The winner is: <span id="winner-name"></h2></span></div>
+        <button id="generateButton">Generate Fighters</button>
     </div>
+    
+    
+    
+    
+    
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+
+
+    <script src="script.js"></script>
+</body>
 </html>
