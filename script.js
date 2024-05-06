@@ -63,12 +63,12 @@ function determineWinner() {
 // Function to generate character stats
 function generateCharacter(characterNum) {
     // Generate random values for each attribute (between 1 and 10)
-    var strength = Math.floor(Math.random() * 10) + 1;
-    var agility = Math.floor(Math.random() * 10) + 1;
-    var intelligence = Math.floor(Math.random() * 10) + 1;
-    var wisdom = Math.floor(Math.random() * 10) + 1;
-    var charisma = Math.floor(Math.random() * 10) + 1;
-    var luck = Math.floor(Math.random() * 5) + 1;
+    var strength = Math.floor(Math.random() * 20) + 1;
+    var agility = Math.floor(Math.random() * 20) + 1;
+    var intelligence = Math.floor(Math.random() * 20) + 1;
+    var wisdom = Math.floor(Math.random() * 20) + 1;
+    var charisma = Math.floor(Math.random() * 20) + 1;
+    var luck = Math.floor(Math.random() * 6) + 1;
     var speed = Math.floor(Math.random() * 20) + 1;
 
     // Generate a random name
