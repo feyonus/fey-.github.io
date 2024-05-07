@@ -20,6 +20,11 @@ h1 {
     color: #f44336; /* Red */
 }
 
+h3 {
+    text-align: center;
+    color: #1e1e1e; /* Dark background */
+}
+
 .characters-container {
     display: flex;
     justify-content: space-between;
