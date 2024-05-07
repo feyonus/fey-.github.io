@@ -174,7 +174,7 @@ function determineWinner() {
     } else if (total2 > total1) {
         winnerName = document.getElementById("character2-name").textContent;
     } else {
-        winnerName = "It's a tie!";
+        winnerName = "everyone";
     }
 
     // Display the winner's name inline
