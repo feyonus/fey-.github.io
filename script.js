@@ -1,14 +1,3 @@
-// "str": _str,
-// "dex": _dex,
-// "con": _con,
-// "int": _int,
-// "wis": _wis,
-// "cha": _cha,
-// "lck": _luck,
-// "spd": _speed,
-
-
-
 var names = [
     "Abigail", "Addison", "Adeline", "Adrian", "Aiden", "Ainsley", "Alexa", "Alexander", "Alexis", "Alice", 
     "Allison", "Amelia", "Anna", "Aria", "Ariel", "Ariana", "Ashley", "Athena", "Aubrey", "Audrey", 
@@ -69,7 +58,6 @@ function determineWinner() {
     // Display the winner's name inline
     document.getElementById("winner-name").textContent = winnerName;
 }
-
 
 
 // Function to generate character stats

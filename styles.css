@@ -22,7 +22,9 @@ h1 {
 
 h3 {
     text-align: center;
-    color: #1e1e1e;
+    /* color: #1e1e1e; */
+    color: #333;
+    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .characters-container {
