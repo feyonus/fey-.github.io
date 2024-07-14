@@ -1,103 +1,152 @@
-var names = [
-    "Abigail", "Addison", "Adeline", "Adrian", "Aiden", "Ainsley", "Alexa", "Alexander", "Alexis", "Alice", 
-    "Allison", "Amelia", "Anna", "Aria", "Ariel", "Ariana", "Ashley", "Athena", "Aubrey", "Audrey", 
-    "Aurora", "Austin", "Ava", "Avery", "Barbara", "Bella", "Brandon", "Brian", "Brianna", "Brittany", 
-    "Brooklyn", "Bruce", "Bryce", "Cameron", "Camila", "Caroline", "Carter", "Charles", "Charlotte", "Chase", 
-    "Chloe", "Christopher", "Claire", "Clara", "Colin", "Cooper", "Cora", "Dakota", "Daniel", "David", 
-    "Delilah", "Declan", "Dominic", "Dylan", "Edgar", "Edward", "Eleanor", "Elena", "Eli", "Elias", 
-    "Elijah", "Elise", "Elizabeth", "Ella", "Ellie", "Elsa", "Emmanuel", "Emma", "Emily", "Ethan", 
-    "Eva", "Evelyn", "Ezekiel", "Faith", "Fernando", "Gabriel", "Gabriela", "Gabriella", "Gavin", "Genesis", 
-    "George", "Gianna", "Giovanni", "Giselle", "Grace", "Grant", "Hailey", "Haley", "Hannah", "Harper", 
-    "Hazel", "Hector", "Hope", "Hudson", "Hunter", "Ian", "Ivy", "Isaac", "Isabel", "Isabella", 
-    "Isabelle", "Isla", "Jackson", "Jade", "Javier", "Jaxon", "Jayden", "Jesse", "Jessica", "Jesus", 
-    "John", "Jonathan", "Jordan", "Joseph", "Josephine", "Joshua", "Josiah", "Jocelyn", "Juan", "Julia", 
-    "Julian", "Juliana", "Julie", "Justin", "Kaden", "Kylie", "Kayla", "Kennedy", "Kevin", "Kyle", 
-    "Landon", "Layla", "Leah", "Levi", "Liam", "Lillian", "Lily", "Logan", "Luna", "Lucas", 
-    "Lucy", "Lydia", "Madelyn", "Madison", "Mason", "Maya", "Matthew", "Megan", "Melissa", "Mia", 
-    "Michael", "Michelle", "Miguel", "Mila", "Miles", "Nadia", "Naomi", "Natalie", "Nathan", "Nevaeh", 
-    "Nicholas", "Nicole", "Nora", "Nova", "Oliver", "Olivia", "Oscar", "Owen", "Parker", "Patrick", 
-    "Payton", "Penelope", "Peter", "Peyton", "Rachel", "Rafael", "Raymond", "Reagan", "Ricardo", "Riley", 
-    "Robert", "Rose", "Ruby", "Ryan", "Samuel", "Santiago", "Savannah", "Scarlett", "Sean", "Serena", 
-    "Seth", "Simon", "Skylar", "Sofia", "Sophia", "Sophie", "Stella", "Stephanie", "Steven", "Taylor", 
-    "Theodore", "Thomas", "Timothy", "Travis", "Tristan", "Troy", "Tyler", "Valentina", "Vanessa", "Victor", 
-    "Victoria", "Violet", "William", "Wyatt", "Xander", "Xavier", "Zachary", "Zoe", "Zoey"
+let generatedNumbers1 = [];
+let generatedNumbers2 = [];
+const labels = ["Strength", "Agility", "Intelligence", "Wisdom", "Charisma", "Luck", "Speed"];
+const firstNames = [
+    "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Charles", "Thomas",
+    "Christopher", "Daniel", "Matthew", "Anthony", "Mark", "Donald", "Steven", "Paul", "Andrew", "Joshua",
+    "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Karen",
+    "Nancy", "Lisa", "Margaret", "Betty", "Sandra", "Ashley", "Dorothy", "Kimberly", "Emily", "Donna",
+    "Michelle", "Carol", "Amanda", "Melissa", "Deborah", "Stephanie", "Rebecca", "Laura", "Sharon", "Cynthia",
+    "Kathleen", "Amy", "Shirley", "Angela", "Helen", "Anna", "Brenda", "Pamela", "Nicole", "Emma",
+    "Samantha", "Katherine", "Christine", "Debra", "Rachel", "Catherine", "Carolyn", "Janet", "Ruth", "Maria",
+    "Heather", "Diane", "Virginia", "Julie", "Joyce", "Victoria", "Olivia", "Kelly", "Christina", "Lauren",
+    "Joan", "Evelyn", "Judith", "Megan", "Cheryl", "Andrea", "Hannah", "Martha", "Jacqueline", "Frances",
+    "Gloria", "Ann", "Teresa", "Kathryn", "Sara", "Janice", "Jean", "Alice", "Madison", "Doris"
 ];
 
-function generateRandomName() {
-    var randomIndex = Math.floor(Math.random() * names.length);
-    return names[randomIndex];
-}
+const lastNames = [
+    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+    "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+    "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
+    "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores",
+    "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts",
+    "Gomez", "Phillips", "Evans", "Turner", "Diaz", "Parker", "Cruz", "Edwards", "Collins", "Reyes",
+    "Stewart", "Morris", "Morales", "Murphy", "Cook", "Rogers", "Gutierrez", "Ortiz", "Morgan", "Cooper",
+    "Peterson", "Bailey", "Reed", "Kelly", "Howard", "Ramos", "Kim", "Cox", "Ward", "Richardson",
+    "Watson", "Brooks", "Chavez", "Wood", "James", "Bennett", "Gray", "Mendoza", "Ruiz", "Hughes",
+    "Price", "Alvarez", "Castillo", "Sanders", "Patel", "Myers", "Long", "Ross", "Foster", "Jimenez"
+];
 
-// Function to calculate the sum of a character's stats
-function calculateTotal(characterNum) {
-    var strength = parseInt(document.getElementById("character" + characterNum + "-strength").textContent);
-    var agility = parseInt(document.getElementById("character" + characterNum + "-agility").textContent);
-    var intelligence = parseInt(document.getElementById("character" + characterNum + "-intelligence").textContent);
-    var wisdom = parseInt(document.getElementById("character" + characterNum + "-wisdom").textContent);
-    var charisma = parseInt(document.getElementById("character" + characterNum + "-charisma").textContent);
-    var luck = parseInt(document.getElementById("character" + characterNum + "-luck").textContent);
-    var speed = parseInt(document.getElementById("character" + characterNum + "-speed").textContent);
-    return strength + agility + intelligence + wisdom + charisma + luck + speed;
-}
-
-// Function to determine the winner and display the result
-function determineWinner() {
-    var total1 = calculateTotal(1);
-    var total2 = calculateTotal(2);
-
-    var winnerName;
-
-    if (total1 > total2) {
-        winnerName = document.getElementById("character1-name").textContent;
-    } else if (total2 > total1) {
-        winnerName = document.getElementById("character2-name").textContent;
-    } else {
-        winnerName = "everyone";
+function generateUniqueSeed(length = 48) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-
-    // Display the winner's name inline
-    document.getElementById("winner-name").textContent = winnerName;
+    return result;
 }
 
+function generateNumbers() {
+    document.getElementById('message').style.display = 'none';
 
-// Function to generate character stats
-function generateCharacter(characterNum) {
-    // Generate random values for each attribute (between 1 and 10)
-    var strength = Math.floor(Math.random() * 20) + 1;
-    var agility = Math.floor(Math.random() * 20) + 1;
-    var intelligence = Math.floor(Math.random() * 20) + 1;
-    var wisdom = Math.floor(Math.random() * 20) + 1;
-    var charisma = Math.floor(Math.random() * 20) + 1;
-    var luck = Math.floor(Math.random() * 6) + 1;
-    var speed = Math.floor(Math.random() * 20) + 1;
+    const seedInput1 = document.getElementById('seed1').value || generateUniqueSeed();
+    const seedInput2 = document.getElementById('seed2').value || generateUniqueSeed();
+    const outputDiv = document.getElementById('output');
+    
+    generatedNumbers1 = generateRandomIntegers(seedInput1, 7, 1, 20);
+    generatedNumbers2 = generateRandomIntegers(seedInput2, 7, 1, 20);
+    
+    const sum1 = generatedNumbers1.reduce((a, b) => a + b, 0);
+    const sum2 = generatedNumbers2.reduce((a, b) => a + b, 0);
 
-    // Generate a random name
-    var name = generateRandomName();
+    const highlightClass1 = sum1 >= sum2 ? 'highlight' : '';
+    const highlightClass2 = sum2 > sum1 ? 'highlight' : '';
 
-    // Display the generated values on the webpage
-    document.getElementById("character" + characterNum + "-name").textContent = name;
-    document.getElementById("character" + characterNum + "-strength").textContent = strength;
-    document.getElementById("character" + characterNum + "-agility").textContent = agility;
-    document.getElementById("character" + characterNum + "-intelligence").textContent = intelligence;
-    document.getElementById("character" + characterNum + "-wisdom").textContent = wisdom;
-    document.getElementById("character" + characterNum + "-charisma").textContent = charisma;
-    document.getElementById("character" + characterNum + "-luck").textContent = luck;
-    document.getElementById("character" + characterNum + "-speed").textContent = speed;
+    const likelihood = calculateLikelihood(sum1, sum2, 7, 1, 20, 10000);
+    
+    const name1 = generateName(seedInput1);
+    const name2 = generateName(seedInput2);
+
+    outputDiv.innerHTML = `
+        <div class="result ${highlightClass1}">
+            <p>Name: ${name1}<br>
+            ID: ${seedInput1}</p>
+            <hr>
+            <p>Stats:<br>
+            ${generateLabeledNumbers(generatedNumbers1).join('<br>')}
+            </p>
+            <!---<p>Sum: ${sum1}</p>--->
+        </div>
+        <div class="versus">VS</div>
+        <div class="result ${highlightClass2}">
+            <p>Name: ${name2}<br>
+            ID: ${seedInput2}</p>
+            <hr>
+            <p>Stats:<br>
+            ${generateLabeledNumbers(generatedNumbers2).join('<br>')}
+            </p>
+            <!---<p>Sum: ${sum2}</p>--->
+        </div>
+        <div class="outcome">Likelihood that the highlighted orphan will get adopted: ${likelihood}%</div>
+    `;
 }
 
-// Function to generate characters for both blocks
-function generateCharacters() {
-    generateCharacter(1);
-    generateCharacter(2);
-    determineWinner();
+function generateRandomIntegers(seed, count, min, max) {
+    const random = seedrandom(seed);
+    const numbers = [];
+    for (let i = 0; i < count; i++) {
+        numbers.push(Math.floor(random() * (max - min + 1)) + min);
+    }
+    return numbers;
 }
 
-// Add event listener for page load
-window.addEventListener('load', function() {
-    generateCharacters();
-});
+function generateLabeledNumbers(numbers) {
+    return numbers.map((num, index) => `${labels[index]}: ${num}`);
+}
 
-// Add event listener for button click
-document.getElementById('generateButton').addEventListener('click', function() {
-    generateCharacters();
-});
+function calculateLikelihood(sum1, sum2, count, min, max, iterations) {
+    let higherSumCount = 0;
+    for (let i = 0; i < iterations; i++) {
+        const randomNumbers = Array.from({ length: count }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+        const randomSum = randomNumbers.reduce((a, b) => a + b, 0);
+        if (randomSum <= Math.max(sum1, sum2)) {
+            higherSumCount++;
+        }
+    }
+    return ((higherSumCount / iterations) * 100).toFixed(2);
+}
+
+function generateName(seed) {
+    const random = seedrandom(seed);
+    const firstName = firstNames[Math.floor(random() * firstNames.length)];
+    const lastName = lastNames[Math.floor(random() * lastNames.length)];
+    return `${firstName} ${lastName}`;
+}
+
+// Simple seed-based random number generator
+// Using the Alea algorithm for demonstration purposes
+function seedrandom(seed) {
+    let s = 0, s1 = 0, s2 = 0, c = 1;
+    let mash = Mash();
+    s = mash(' ');
+    s1 = mash(' ');
+    s2 = mash(' ');
+    s = mash(seed);
+    s1 = mash(seed);
+    s2 = mash(seed);
+    return function() {
+        let t = 2091639 * s + c * 2.3283064365386963e-10; // 2^-32
+        s = s1;
+        s1 = s2;
+        return s2 = t - (c = t | 0);
+    };
+}
+
+function Mash() {
+    let n = 0xefc8249d;
+    return function(data) {
+        data = data.toString();
+        for (let i = 0; i < data.length; i++) {
+            n += data.charCodeAt(i);
+            let h = 0.02519603282416938 * n;
+            n = h >>> 0;
+            h -= n;
+            h *= n;
+            n = h >>> 0;
+            h -= n;
+            n += h * 0x100000000; // 2^32
+        }
+        return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
+    };
+}
