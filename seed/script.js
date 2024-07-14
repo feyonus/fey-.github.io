@@ -1,5 +1,8 @@
 let generatedNumbers1 = [];
 let generatedNumbers2 = [];
+const labels = ["Strength", "Agility", "Intelligence", "Wisdom", "Charisma", "Luck", "Speed"];
+const firstNames = ["John", "Jane", "James", "Emily", "Michael", "Sarah", "David", "Laura", "Robert", "Anna"];
+const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez"];
 
 function generateUniqueSeed(length = 48) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -26,17 +29,31 @@ function generateNumbers() {
     const highlightClass2 = sum2 > sum1 ? 'highlight' : '';
 
     const likelihood = calculateLikelihood(sum1, sum2, 7, 1, 20, 10000);
+    
+    const name1 = generateName(seedInput1);
+    const name2 = generateName(seedInput2);
 
     outputDiv.innerHTML = `
         <div class="result ${highlightClass1}">
-            <p>Seed 1: ${seedInput1}</p>
-            <p>Random Numbers 1: ${generatedNumbers1.join(', ')} (Sum: ${sum1})</p>
+            <p>Name: ${name1}<br>
+            ID: ${seedInput1}</p>
+            <hr>
+            <p>Stats:<br>
+            ${generateLabeledNumbers(generatedNumbers1).join('<br>')}
+            </p>
+            <p>Sum: ${sum1}</p>
         </div>
+        <p>VS</p>
         <div class="result ${highlightClass2}">
-            <p>Seed 2: ${seedInput2}</p>
-            <p>Random Numbers 2: ${generatedNumbers2.join(', ')} (Sum: ${sum2})</p>
+            <p>Name: ${name2}<br>
+            ID: ${seedInput2}</p>
+            <hr>
+            <p>Stats:<br>
+            ${generateLabeledNumbers(generatedNumbers2).join('<br>')}
+            </p>
+            <p>Sum: ${sum2}</p>
         </div>
-        <p>Likelihood that the highlighted set has the highest sum: ${likelihood}%</p>
+        <p>Likelihood that the highlighted fighter will get adopted: ${likelihood}%</p>
     `;
 }
 
@@ -49,6 +66,10 @@ function generateRandomIntegers(seed, count, min, max) {
     return numbers;
 }
 
+function generateLabeledNumbers(numbers) {
+    return numbers.map((num, index) => `${labels[index]}: ${num}`);
+}
+
 function calculateLikelihood(sum1, sum2, count, min, max, iterations) {
     let higherSumCount = 0;
     for (let i = 0; i < iterations; i++) {
@@ -59,6 +80,13 @@ function calculateLikelihood(sum1, sum2, count, min, max, iterations) {
         }
     }
     return ((higherSumCount / iterations) * 100).toFixed(2);
+}
+
+function generateName(seed) {
+    const random = seedrandom(seed);
+    const firstName = firstNames[Math.floor(random() * firstNames.length)];
+    const lastName = lastNames[Math.floor(random() * lastNames.length)];
+    return `${firstName} ${lastName}`;
 }
 
 // Simple seed-based random number generator
