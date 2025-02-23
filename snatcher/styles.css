@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #808080; /* Gray shadows */
+}
+
+#game {
+    text-align: center;
+    background-color: #ffffff; /* White innocence */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Black stealth */
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #ff0000; /* Red danger */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #cc0000; /* Darker red */
+}
+
+button:disabled {
+    background-color: #cccccc; /* Light gray */
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+#captured-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#captured-table th, #captured-table td {
+    border: 1px solid #000000; /* Black borders */
+    padding: 8px;
+}
+
+#captured-table th {
+    background-color: #ff0000; /* Red header */
+    color: #ffffff;
+}
+
+.release-btn {
+    background-color: #000000; /* Black for dump */
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.release-btn:hover {
+    background-color: #333333; /* Dark gray */
+}
+
+#creature-image {
+    font-size: 12px;
+    line-height: 1;
+    margin: 10px auto;
+    color: #000000; /* Black text */
+}
+
+.ascii-mini {
+    font-size: 10px;
+    line-height: 1;
+    white-space: pre;
+    color: #000000;
+}
+
+#pagination {
+    margin-top: 10px;
+}
+
+#page-info {
+    margin: 0 10px;
+    color: #000000;
+}
