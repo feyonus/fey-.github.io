@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orphan Snatcher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game">
+        <div id="overworld">
+            <h1>Orphan Snatcher</h1>
+            <p>Sneak into the orphanage and nab some kids!</p>
+            <button onclick="explore()">Sneak Around</button>
+            <h2>Nabbed Orphans</h2>
+            <table id="captured-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Skill</th>
+                        <th>Stamina</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="captured-list"></tbody>
+            </table>
+            <div id="pagination">
+                <button onclick="prevPage()" id="prev-btn" disabled>Previous</button>
+                <span id="page-info"></span>
+                <button onclick="nextPage()" id="next-btn">Next</button>
+            </div>
+        </div>
+        <div id="battle" class="hidden">
+            <h2>Spotted <span id="creature-name"></span>!</h2>
+            <pre id="creature-image"></pre>
+            <p>Stamina: <span id="creature-hp"></span></p>
+            <button onclick="attack()">Bash Staff</button>
+            <button onclick="catchCreature()">Snag Kid</button>
+            <button onclick="run()">Bolt</button>
+            <p id="message"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
