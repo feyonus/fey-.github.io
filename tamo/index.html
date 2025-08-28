@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldritch Companion - Cosmic Horror Tamagotchi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Cosmic background with stars and nebulae */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at center, rgba(40, 0, 80, 0.8) 0%, rgba(0, 0, 0, 1) 70%),
+                repeating-linear-gradient(0deg, rgba(30, 0, 60, 0.3), rgba(30, 0, 60, 0.3) 1px, transparent 1px, transparent 10px),
+                repeating-linear-gradient(90deg, rgba(30, 0, 60, 0.3), rgba(30, 0, 60, 0.3) 1px, transparent 1px, transparent 10px);
+            z-index: -1;
+            animation: cosmicShift 30s linear infinite;
+        }
+
+        @keyframes cosmicShift {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        /* Floating cosmic particles */
+        .particle {
+            position: absolute;
+            background: rgba(180, 180, 220, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(15, 15, 25, 0.95);
+            border: 3px solid #333;
+            border-radius: 10px;
+            box-shadow: 
+                0 0 20px rgba(100, 100, 150, 0.7),
+                inset 0 0 15px rgba(50, 50, 80, 0.5);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(80, 80, 120, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(60, 60, 100, 0.2) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .screen-header {
+            background: linear-gradient(to right, #111, #333, #111);
+            color: #ccc;
+            padding: 12px 15px;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #555;
+            text-shadow: 0 0 10px rgba(180, 180, 220, 0.8);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .screen-header::after {
+            content: "ELDRITCH COMPANION v1.0";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(180, 180, 220, 0.3), transparent);
+            transform: translateX(-100%);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            20% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .screen {
+            background: rgba(10, 10, 20, 0.95);
+            padding: 20px;
+            min-height: 350px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #444;
+        }
+
+        .pet-container {
+            width: 220px;
+            height: 220px;
+            position: relative;
+            margin: 20px 0;
+            filter: drop-shadow(0 0 15px rgba(180, 180, 220, 0.7));
+        }
+
+        .pet {
+            width: 100%;
+            height: 100%;
+            background: rgba(40, 40, 60, 0.8);
+            border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                inset 0 -10px 30px rgba(30, 30, 50, 0.9),
+                0 0 20px rgba(180, 180, 220, 0.6);
+            animation: blob 8s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .pet::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(100, 100, 150, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(80, 80, 130, 0.4) 0%, transparent 40%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes blob {
+            0% { border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; }
+            33% { border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%; }
+            66% { border-radius: 30% 70% 60% 40% / 40% 60% 30% 60%; }
+            100% { border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .eye {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #000;
+            border-radius: 50%;
+            top: 60px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(180, 180, 220, 0.7);
+        }
+
+        .eye.left {
+            left: 40px;
+        }
+
+        .eye.right {
+            right: 40px;
+        }
+
+        .pupil {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #aaa;
+            border-radius: 50%;
+            top: 15px;
+            left: 10px;
+            animation: lookAround 10s infinite;
+        }
+
+        @keyframes lookAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(5px, -5px); }
+            50% { transform: translate(0, 5px); }
+            75% { transform: translate(-5px, -3px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .pupil::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+        }
+
+        .tentacle {
+            position: absolute;
+            width: 15px;
+            height: 60px;
+            background: rgba(50, 50, 80, 0.9);
+            border-radius: 10px;
+            bottom: -10px;
+            animation: wiggle 3s infinite ease-in-out;
+        }
+
+        .tentacle:nth-child(1) {
+            left: 30px;
+            height: 50px;
+            animation-delay: 0s;
+        }
+
+        .tentacle:nth-child(2) {
+            left: 70px;
+            height: 70px;
+            animation-delay: 0.5s;
+        }
+
+        .tentacle:nth-child(3) {
+            left: 110px;
+            height: 60px;
+            animation-delay: 1s;
+        }
+
+        .tentacle:nth-child(4) {
+            left: 150px;
+            height: 55px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .mouth {
+            position: absolute;
+            width: 70px;
+            height: 30px;
+            border-bottom: 4px solid #777;
+            border-radius: 0 0 100% 100%;
+            top: 130px;
+            animation: mouthChange 8s infinite;
+        }
+
+        @keyframes mouthChange {
+            0% { 
+                width: 70px; 
+                border-radius: 0 0 100% 100%;
+                border-bottom: 4px solid #777;
+            }
+            33% { 
+                width: 50px; 
+                border-radius: 0 0 50% 50%;
+                border-bottom: 3px solid #999;
+            }
+            66% { 
+                width: 90px; 
+                border-radius: 0 0 70% 70%;
+                border-bottom: 5px solid #bbb;
+            }
+            100% { 
+                width: 70px; 
+                border-radius: 0 0 100% 100%;
+                border-bottom: 4px solid #777;
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin: 20px 0;
+            background: rgba(25, 25, 40, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(100, 100, 150, 0.5);
+            border: 1px solid #555;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ccc;
+            text-shadow: 0 0 5px rgba(180, 180, 220, 0.7);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(20, 20, 35, 0.9);
+            border-top: 1px solid #555;
+        }
+
+        /* Black and white themed buttons */
+        .btn {
+            padding: 15px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            background: #333;
+            transform: translateY(2px);
+        }
+
+        .btn.feed {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn.play {
+            border-color: #ccc;
+            color: #ccc;
+        }
+
+        .btn.sleep {
+            border-color: #999;
+            color: #999;
+        }
+
+        .btn.clean {
+            border-color: #666;
+            color: #666;
+        }
+
+        .message {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(30, 30, 50, 0.95);
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            max-width: 80%;
+            text-align: center;
+            animation: fadeIn 0.5s;
+            color: #ddd;
+            border: 1px solid #666;
+            box-shadow: 0 0 10px rgba(100, 100, 150, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 24px;
+            color: #ccc;
+            text-shadow: 0 0 5px rgba(180, 180, 220, 0.7);
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        /* Eldritch whispers */
+        .whisper {
+            position: absolute;
+            color: rgba(200, 200, 230, 0.4);
+            font-size: 12px;
+            pointer-events: none;
+            animation: whisper 15s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes whisper {
+            0% { 
+                opacity: 0;
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { 
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+            }
+        }
+
+        /* Chaotic environment effects */
+        .chaos {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(150, 150, 200, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(100, 100, 150, 0.2) 0%, transparent 20%);
+            animation: chaosPulse 5s infinite alternate;
+        }
+
+        @keyframes chaosPulse {
+            0% { opacity: 0.05; }
+            100% { opacity: 0.2; }
+        }
+
+        /* Cosmic eye effect */
+        .cosmic-eye {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(200, 200, 230, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            animation: cosmicEye 15s infinite;
+        }
+
+        @keyframes cosmicEye {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translate(300px, -200px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="screen-header">ELDRITCH COMPANION v1.0</div>
+        <div class="screen">
+            <div class="chaos"></div>
+            <div class="pet-container">
+                <div class="pet" id="pet">
+                    <div class="eye left">
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="eye right">
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="mouth" id="mouth"></div>
+                    <div class="tentacle"></div>
+                    <div class="tentacle"></div>
+                    <div class="tentacle"></div>
+                    <div class="tentacle"></div>
+                </div>
+            </div>
+            <div class="status" id="status">The void stares back...</div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="hunger">100</div>
+                    <div class="stat-label">HUNGER</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="happiness">100</div>
+                    <div class="stat-label">SANITY</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="health">100</div>
+                    <div class="stat-label">VITALITY</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="energy">100</div>
+                    <div class="stat-label">ESSENCE</div>
+                </div>
+            </div>
+            <div class="message" id="message">Welcome, mortal... to the abyss.</div>
+        </div>
+        <div class="controls">
+            <button class="btn feed" onclick="feedPet()">FEED</button>
+            <button class="btn play" onclick="playWithPet()">COMMUNE</button>
+            <button class="btn sleep" onclick="putToSleep()">DREAM</button>
+            <button class="btn clean" onclick="cleanPet()">PURIFY</button>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let gameState = {
+            hunger: 100,
+            happiness: 100,
+            health: 100,
+            energy: 100,
+            lastUpdate: Date.now(),
+            petName: "Entity"
+        };
+
+        // Load game state from localStorage
+        function loadGameState() {
+            const savedState = localStorage.getItem("eldritchCompanionState");
+            if (savedState) {
+                gameState = JSON.parse(savedState);
+                // Adjust for time passed since last visit
+                const timePassed = Date.now() - gameState.lastUpdate;
+                const hoursPassed = timePassed / (1000 * 60 * 60);
+                
+                // Decrease stats over time
+                gameState.hunger = Math.max(0, gameState.hunger - (hoursPassed * 5));
+                gameState.happiness = Math.max(0, gameState.happiness - (hoursPassed * 3));
+                gameState.energy = Math.max(0, gameState.energy - (hoursPassed * 2));
+                gameState.health = Math.max(0, gameState.health - (hoursPassed * 1));
+                
+                // If health is too low, decrease other stats faster
+                if (gameState.health < 30) {
+                    gameState.hunger = Math.max(0, gameState.hunger - (hoursPassed * 3));
+                    gameState.happiness = Math.max(0, gameState.happiness - (hoursPassed * 5));
+                    gameState.energy = Math.max(0, gameState.energy - (hoursPassed * 4));
+                }
+            }
+            updateDisplay();
+            saveGameState();
+        }
+
+        // Save game state to localStorage
+        function saveGameState() {
+            gameState.lastUpdate = Date.now();
+            localStorage.setItem("eldritchCompanionState", JSON.stringify(gameState));
+        }
+
+        // Update display elements
+        function updateDisplay() {
+            document.getElementById('hunger').textContent = Math.round(gameState.hunger);
+            document.getElementById('happiness').textContent = Math.round(gameState.happiness);
+            document.getElementById('health').textContent = Math.round(gameState.health);
+            document.getElementById('energy').textContent = Math.round(gameState.energy);
+            
+            // Update status message based on stats
+            const status = document.getElementById('status');
+            if (gameState.health < 20) {
+                status.textContent = "Your flesh is not your own...";
+            } else if (gameState.hunger < 20) {
+                status.textContent = "The hunger consumes all...";
+            } else if (gameState.energy < 20) {
+                status.textContent = "The void calls your name...";
+            } else if (gameState.happiness < 20) {
+                status.textContent = "Madness approaches...";
+            } else if (gameState.happiness > 80) {
+                status.textContent = "The cosmos whispers sweet nothings...";
+            } else {
+                status.textContent = "The void stares back...";
+            }
+        }
+
+        // Show message
+        function showMessage(text) {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.style.opacity = 1;
+            
+            setTimeout(() => {
+                messageEl.style.opacity = 0;
+            }, 3000);
+        }
+
+        // Feed the pet
+        function feedPet() {
+            if (gameState.hunger >= 100) {
+                showMessage("It hungers for something... else.");
+                return;
+            }
+            
+            gameState.hunger = Math.min(100, gameState.hunger + 30);
+            gameState.happiness = Math.max(0, gameState.happiness - 5); // Feeding makes it less happy
+            gameState.health = Math.min(100, gameState.health + 2);
+            
+            showMessage("You offer sustenance to the void...");
+            updateDisplay();
+            saveGameState();
+        }
+
+        // Play with the pet
+        function playWithPet() {
+            if (gameState.energy < 20) {
+                showMessage("Your mind cannot bear more communion.");
+                return;
+            }
+            
+            gameState.happiness = Math.min(100, gameState.happiness + 20);
+            gameState.energy = Math.max(0, gameState.energy - 15);
+            gameState.hunger = Math.max(0, gameState.hunger - 5);
+            
+            showMessage("Your consciousness merges with the abyss...");
+            updateDisplay();
+            saveGameState();
+        }
+
+        // Put pet to sleep
+        function putToSleep() {
+            if (gameState.energy >= 90) {
+                showMessage("The entity is already dormant.");
+                return;
+            }
+            
+            gameState.energy = Math.min(100, gameState.energy + 40);
+            gameState.health = Math.min(100, gameState.health + 10);
+            gameState.happiness = Math.max(0, gameState.happiness - 10); // Dreams disturb
+            
+            showMessage("You drift into the realm of nightmares...");
+            updateDisplay();
+            saveGameState();
+        }
+
+        // Clean the pet
+        function cleanPet() {
+            if (gameState.health >= 100) {
+                showMessage("Purity is but an illusion.");
+                return;
+            }
+            
+            gameState.health = Math.min(100, gameState.health + 25);
+            gameState.happiness = Math.max(0, gameState.happiness - 5); // Reality is painful
+            
+            showMessage("You attempt to cleanse the unknowable...");
+            updateDisplay();
+            saveGameState();
+        }
+
+        // Create cosmic particles
+        function createParticles() {
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size and position
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random animation
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Create eldritch whispers
+        function createWhispers() {
+            setInterval(() => {
+                const whisper = document.createElement('div');
+                whisper.classList.add('whisper');
+                
+                // Random content
+                const phrases = [
+                    "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn",
+                    "The stars are wrong...",
+                    "Do not look into the abyss...",
+                    "Your soul is no longer yours...",
+                    "The void grows hungry...",
+                    "Reality is a lie...",
+                    "Madness lurks in every shadow...",
+                    "The old ones awaken...",
+                    "Time is not linear...",
+                    "Your thoughts are not your own..."
+                ];
+                
+                whisper.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                
+                // Random position
+                const posX = Math.random() * 100;
+                whisper.style.left = `${posX}%`;
+                whisper.style.top = '100%';
+                
+                document.body.appendChild(whisper);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    whisper.remove();
+                }, 15000);
+            }, 3000);
+        }
+
+        // Create cosmic eyes
+        function createCosmicEyes() {
+            setInterval(() => {
+                const eye = document.createElement('div');
+                eye.classList.add('cosmic-eye');
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                eye.style.left = `${posX}px`;
+                eye.style.top = `${posY}px`;
+                
+                document.body.appendChild(eye);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    eye.remove();
+                }, 15000);
+            }, 5000);
+        }
+
+        // Game loop to decrease stats over time
+        function startGameLoop() {
+            setInterval(() => {
+                // Natural stat decay
+                gameState.hunger = Math.max(0, gameState.hunger - 0.1);
+                gameState.happiness = Math.max(0, gameState.happiness - 0.05);
+                gameState.energy = Math.max(0, gameState.energy - 0.03);
+                
+                // Health decreases faster if other stats are low
+                if (gameState.hunger < 30 || gameState.happiness < 30 || gameState.energy < 30) {
+                    gameState.health = Math.max(0, gameState.health - 0.1);
+                }
+                
+                updateDisplay();
+                saveGameState();
+            }, 60000); // Update every minute
+        }
+
+        // Initialize the game
+        window.onload = function() {
+            loadGameState();
+            startGameLoop();
+            createParticles();
+            createWhispers();
+            createCosmicEyes();
+        };
+    </script>
+</body>
+</html>
