@@ -669,8 +669,8 @@ class Game {
         this.ctx.fillStyle = WHITE;
         this.ctx.font = '24px Arial';
         this.ctx.textAlign = 'center';
-        this.ctx.fillText('AI Battle Demo', SCREEN_WIDTH / 2, 30);
-        this.ctx.fillText('Configure your game settings above', SCREEN_WIDTH / 2, 60);
+        this.ctx.fillText('JUMP BOMB BATTLE GO', SCREEN_WIDTH / 2, 30);
+        this.ctx.fillText('Configure your game settings.', SCREEN_WIDTH / 2, 60);
         this.ctx.textAlign = 'left';
     }
 
